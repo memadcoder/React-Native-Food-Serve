@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import { View, Text, ScrollView, FlatList } from "react-native";
 import { Card, ListItem } from "react-native-elements";
-import { LEADERS } from "../shared/leaders";
+
+import { connect } from "react-redux";
+import { baseUrl } from "../shared/baseUrl";
+
+const mapStateToProps = (state) => {
+  return {
+    leaders: state.leaders,
+  };
+};
 
 function History() {
   return (
@@ -32,7 +40,7 @@ function RenderLeader({ item, index }) {
         title={item.name}
         subtitle={item.description}
         hideChevron={true}
-        leftAvatar={{ source: require("./images/alberto.png") }}
+        leftAvatar={{ source: { uri: baseUrl + item.image } }}
       />
     );
   } else {
@@ -44,27 +52,9 @@ function RenderLeader({ item, index }) {
       </View>
     );
   }
-  //   if (item != null) {
-  //     return (
-  //       <Card
-  //         title="Corporate Leadership"
-  //       >
-  //         <Text style={{ margin: 10 }}>{item.description}</Text>
-  //       </Card>
-  //     );
-  //   } else {
-  //     return <View></View>;
-  //   }
 }
 
 class AboutUs extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      leaders: LEADERS,
-    };
-  }
-
   static navigationOptions = {
     title: "AboutUs",
   };
@@ -75,7 +65,7 @@ class AboutUs extends Component {
         <History />
         <Card title="Corporate Leadership">
           <FlatList
-            data={this.state.leaders}
+            data={this.props.leaders.leaders}
             renderItem={RenderLeader}
             keyExtractor={(item) => item.id.toString()}
           />
@@ -85,4 +75,4 @@ class AboutUs extends Component {
   }
 }
 
-export default AboutUs;
+export default connect(mapStateToProps)(AboutUs);
