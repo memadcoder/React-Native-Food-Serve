@@ -13,10 +13,11 @@ import {
   createStackNavigator,
   createDrawerNavigator,
   DrawerItems,
-  SafeAreaView,
 } from "react-navigation";
 import Constants from "expo-constants";
 import { Icon } from "react-native-elements";
+import SafeAreaView from "react-native-safe-area-view";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import Home from "./HomeComponent";
 import AboutUs from "./AboutComponent";
@@ -79,23 +80,25 @@ const MenuNavigator = createStackNavigator(
 
 const CustomDrawerContentComponent = (props) => (
   <ScrollView>
-    <SafeAreaView
-      style={styles.container}
-      forceInset={{ top: "always", horizontal: "never" }}
-    >
-      <View style={styles.drawerHeader}>
-        <View style={{ flex: 1 }}>
-          <Image
-            source={require("./images/logo.png")}
-            style={styles.drawerImage}
-          />
+    <SafeAreaProvider>
+      <SafeAreaView
+        style={styles.container}
+        forceInset={{ top: "always", horizontal: "never" }}
+      >
+        <View style={styles.drawerHeader}>
+          <View style={{ flex: 1 }}>
+            <Image
+              source={require("./images/logo.png")}
+              style={styles.drawerImage}
+            />
+          </View>
+          <View style={{ flex: 2 }}>
+            <Text style={styles.drawerHeaderText}>Ristorante Con Fusion</Text>
+          </View>
         </View>
-        <View style={{ flex: 2 }}>
-          <Text style={styles.drawerHeaderText}>Ristorante Con Fusion</Text>
-        </View>
-      </View>
-      <DrawerItems {...props} />
-    </SafeAreaView>
+        <DrawerItems {...props} />
+      </SafeAreaView>
+    </SafeAreaProvider>
   </ScrollView>
 );
 
@@ -249,7 +252,7 @@ class Main extends Component {
       <View
         style={{
           flex: 1,
-          paddingTop: Platform.OS === "ios" ? 0 : Constants.statusBarHeight,
+          // paddingTop: Platform.OS === "ios" ? 0 : Constants.statusBarHeight,
         }}
       >
         <MainNavigator />
