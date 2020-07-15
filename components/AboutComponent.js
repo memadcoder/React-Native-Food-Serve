@@ -35,7 +35,6 @@ function History() {
 
 function RenderLeader({ item, index }) {
   if (item != null) {
-    console.log(item);
     return (
       <ListItem
         key={index}
