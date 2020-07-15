@@ -33,6 +33,8 @@ import {
 
 import Reservation from "./ReservationComponent";
 
+import Favorites from "./FavoriteComponent";
+
 const mapStateToProps = (state) => {
   return {
     dishes: state.dishes,
@@ -204,6 +206,31 @@ const ReservationNavigator = createStackNavigator(
   }
 );
 
+const FavoritesNavigator = createStackNavigator(
+  {
+    Favorites: { screen: Favorites },
+  },
+  {
+    navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: "#512DA8",
+      },
+      headerTitleStyle: {
+        color: "#fff",
+      },
+      headerTintColor: "#fff",
+      headerLeft: (
+        <Icon
+          name="menu"
+          size={24}
+          iconStyle={{ color: "white" }}
+          onPress={() => navigation.navigate("DrawerToggle")}
+        />
+      ),
+    }),
+  }
+);
+
 const MainNavigator = createDrawerNavigator(
   {
     Home: {
@@ -268,6 +295,21 @@ const MainNavigator = createDrawerNavigator(
         drawerIcon: ({ tintColor, focused }) => (
           <Icon
             name="cutlery"
+            type="font-awesome"
+            size={24}
+            iconStyle={{ color: tintColor }}
+          />
+        ),
+      },
+    },
+    Favorites: {
+      screen: FavoritesNavigator,
+      navigationOptions: {
+        title: "My Favorites",
+        drawerLabel: "My Favorites",
+        drawerIcon: ({ tintColor, focused }) => (
+          <Icon
+            name="heart"
             type="font-awesome"
             size={24}
             iconStyle={{ color: tintColor }}
