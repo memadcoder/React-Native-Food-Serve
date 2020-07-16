@@ -14,7 +14,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
 
-import { postFavorite, postComment } from "../redux/ActionCreators";
+import { postFavorite, postComment } from "../Redux/ActionCreators";
 
 const mapStateToProps = (state) => {
   return {

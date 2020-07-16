@@ -6,7 +6,7 @@ import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUrl";
 
 import Swipeout from "react-native-swipeout";
-import { deleteFavorite } from "../redux/ActionCreators";
+import { deleteFavorite } from "../Redux/ActionCreators";
 
 const mapStateToProps = (state) => {
   return {

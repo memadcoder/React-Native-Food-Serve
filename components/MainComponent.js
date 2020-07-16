@@ -29,7 +29,7 @@ import {
   fetchComments,
   fetchPromos,
   fetchLeaders,
-} from "../redux/ActionCreators";
+} from "../Redux/ActionCreators";
 
 import Reservation from "./ReservationComponent";
 
