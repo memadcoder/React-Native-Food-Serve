@@ -40,6 +40,10 @@ function RenderDish(props) {
     if (dx < -200) return true;
     else return false;
   };
+  const recognizeComment = ({ moveX, moveY, dx, dy }) => {
+    if (dx > 200) return true;
+    else return false;
+  };
 
   // handleViewRef = (ref) => (this.view = ref);
 
@@ -57,7 +61,7 @@ function RenderDish(props) {
     onPanResponderEnd: (e, gestureState) => {
       console.log("pan responder end", gestureState);
       if (recognizeDrag(gestureState)) {
-        // console.log("swiped enough");
+        console.log("swiped enough x=-200");
         Alert.alert(
           "Add Favorite",
           "Are you sure you wish to add " + dish.name + " to favorite?",
@@ -78,6 +82,10 @@ function RenderDish(props) {
           ],
           { cancelable: false }
         );
+      }
+      if (recognizeComment(gestureState)) {
+        console.log("swiped enough x=+200");
+        props.toggleComment();
       }
       return true;
     },
