@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "expo": "~38.0.1",
+    "expo-calendar": "~8.2.1",
     "expo-constants": "~9.1.1",
     "expo-secure-store": "~9.0.1",
     "expo-splash-screen": "~0.3.1",
