@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, ScrollView, Animated, Easing } from "react-native";
+import { View, Text, Animated, Easing } from "react-native";
 import { Card } from "react-native-elements";
 
 import { connect } from "react-redux";
@@ -52,8 +52,33 @@ class Home extends Component {
 
   componentDidMount() {
     this.animate();
+    this.callApi();
+    // this.props.fetchPosts();
   }
 
+  callApi() {
+    return fetch(baseUrl)
+      .then(
+        (response) => {
+          if (response.ok) {
+            return response;
+          } else {
+            var error = new Error(
+              "Error " + response.status + ": " + response.statusText
+            );
+            error.response = response;
+            throw error;
+          }
+        },
+        (error) => {
+          var errmess = new Error(error.message);
+          throw errmess;
+        }
+      )
+      .then((response) => response.json())
+      .then((posts) => console.log(posts))
+      .catch((error) => console.log(error));
+  }
   animate() {
     this.animatedValue.setValue(0);
     Animated.timing(this.animatedValue, {

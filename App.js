@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import Main from "./components/MainComponent";
 import { Provider } from "react-redux";
 import { ConfigureStore } from "./Redux/cofigureStore";
@@ -8,7 +8,7 @@ import { Loading } from "./components/LoadingComponent";
 
 const { persistor, store } = ConfigureStore();
 
-export default class App extends React.Component {
+export default class App extends Component {
   render() {
     return (
       <Provider store={store}>

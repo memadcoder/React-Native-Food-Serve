@@ -15,7 +15,6 @@ import {
 import * as Animatable from "react-native-animatable";
 import { Notifications } from "expo";
 import * as Permissions from "expo-permissions";
-import DateTimePicker from "@react-native-community/datetimepicker";
 import FaIcon from "react-native-vector-icons/FontAwesome";
 import * as Calendar from "expo-calendar";
 

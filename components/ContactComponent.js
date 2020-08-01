@@ -4,8 +4,7 @@ import { Card, Button, Icon } from "react-native-elements";
 
 import * as Animatable from "react-native-animatable";
 
-// import { MailComposer } from "expo";
-import * as MailComposer from "expo-mail-composer";
+import { MailComposer } from "expo";
 
 class ContactUs extends Component {
   static navigationOptions = {
@@ -18,6 +17,36 @@ class ContactUs extends Component {
       subject: "Enquiry",
       body: "To whom it may concern:",
     });
+  }
+
+  componentDidMount() {
+    this.callApi();
+    // this.props.fetchPosts();
+    console.log("answer=>", this.props.posts.posts);
+  }
+
+  callApi() {
+    fetch(baseUrl)
+      .then(
+        (response) => {
+          if (response.ok) {
+            return response;
+          } else {
+            var error = new Error(
+              "Error " + response.status + ": " + response.statusText
+            );
+            error.response = response;
+            throw error;
+          }
+        },
+        (error) => {
+          var errmess = new Error(error.message);
+          throw errmess;
+        }
+      )
+      .then((response) => response.json())
+      .then((posts) => console.log(posts))
+      .catch((error) => console.log(error));
   }
 
   render() {
